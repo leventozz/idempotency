@@ -1,5 +1,6 @@
 namespace Idempotency.API
 {
+    [Serializable]
     public class WeatherForecast
     {
         public DateOnly Date { get; set; }

@@ -1,3 +1,4 @@
+using IdempotentAPI.Cache.DistributedCache.Extensions.DependencyInjection;
 using IdempotentAPI.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddIdempotentAPI();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddIdempotentAPIUsingDistributedCache();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
