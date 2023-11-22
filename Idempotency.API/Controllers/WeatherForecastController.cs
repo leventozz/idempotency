@@ -7,7 +7,6 @@ namespace Idempotency.API.Controllers
     [Route("[controller]")]
     [Consumes("application/json")]
     [Produces("application/json")]
-    [Idempotent(Enabled = true)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -22,9 +21,9 @@ namespace Idempotency.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        [Idempotent(ExpireHours = 48)]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost(Name = "GetWeatherForecast")]
+        [Idempotent(ExpireHours = 1)]
+        public IEnumerable<WeatherForecast> Post()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
